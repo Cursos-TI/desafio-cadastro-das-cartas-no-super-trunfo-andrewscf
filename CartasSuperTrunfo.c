@@ -13,8 +13,9 @@ int main() {
     {
         char estado;
         char nome[50];
-        int cd_cidade, populacao, n_pt;
-        float pib, area, densidade, pibperc
+        unsigned long int populacao;
+        int cd_cidade, n_pt;
+        float pib, area, densidade, pibperc, superpoder
     };
 
     struct Carta Carta1;
@@ -27,7 +28,7 @@ int main() {
     printf("Atributos das cartas 01 \n");
 
     printf("Digite a letra do estado: ");
-    scanf("%c", &Carta1.estado);
+    scanf(" %c", &Carta1.estado);
 
     printf("Digite um nome de cidade: ");
     scanf("%s", Carta1.nome);
@@ -36,7 +37,7 @@ int main() {
     scanf("%d", &Carta1.cd_cidade);
 
     printf("Digite a população: ");
-    scanf("%d", &Carta1.populacao);
+    scanf("%ld", &Carta1.populacao);
     
     printf("Digite o PIB: ");
     scanf("%f", &Carta1.pib);
@@ -50,7 +51,7 @@ int main() {
     printf("Atributos das cartas 02 \n");
 
     printf("Digite a letra do estado: ");
-    scanf("%c", &Carta2.estado);
+    scanf(" %c", &Carta2.estado);
 
     printf("Digite um nome de cidade: ");
     scanf("%s", Carta2.nome);
@@ -59,7 +60,7 @@ int main() {
     scanf("%d", &Carta2.cd_cidade);
 
     printf("Digite a população: ");
-    scanf("%d", &Carta2.populacao);
+    scanf("%ld", &Carta2.populacao);
     
     printf("Digite o PIB: ");
     scanf("%f", &Carta2.pib);
@@ -76,12 +77,16 @@ int main() {
 
     Carta1.densidade = (float) Carta1.populacao / Carta1.area;
     Carta1.pibperc = (float) Carta1.pib / Carta1.populacao;
+    Carta1.superpoder = (float) Carta1.populacao + Carta1.area + Carta1.pib + Carta1.pibperc + Carta1.n_pt + (1/Carta1.densidade);
 
     Carta2.densidade = (float) Carta2.populacao / Carta2.area;
     Carta2.pibperc = (float) Carta2.pib / Carta2.populacao;
+    Carta2.superpoder = (float) Carta2.populacao + Carta2.area + Carta2.pib + Carta2.pibperc + Carta2.n_pt + (1/Carta2.densidade);
+
+
 
     printf(
-        "Carta 01 \n Cidade: %s\n Código: %d\n População: %d\n PIB: %.2f\n, Pontos turísticos: %d\n Área: %.2f\n Densidade: %.2f\n PIB per Capita: %.2f\n",
+        "Carta 01 \n Cidade: %s\n Código: %ld\n População: %d\n PIB: %.2f\n Pontos turísticos: %d\n Área: %.2f\n Densidade: %.2f\n PIB per Capita: %.2f\n Super poder: %.2f\n",
         Carta1.nome,
         Carta1.cd_cidade,
         Carta1.populacao,
@@ -89,11 +94,12 @@ int main() {
         Carta1.n_pt,
         Carta1.area,
         Carta1.densidade,
-        Carta1.pibperc
+        Carta1.pibperc,
+        Carta1.superpoder
     );
 
     printf(
-        "Carta 02 \n Cidade: %s\n Código: %d\n População: %d\n PIB: %.2f\n, Pontos turísticos: %d\n Área: %.2f\n Densidade: %.2f\n PIB per Capita: %.2f\n",
+        "Carta 02 \n Cidade: %s\n Código: %ld\n População: %d\n PIB: %.2f\n Pontos turísticos: %d\n Área: %.2f\n Densidade: %.2f\n PIB per Capita: %.2f\n Super poder: %.2f\n",
         Carta2.nome,
         Carta2.cd_cidade,
         Carta2.populacao,
@@ -101,8 +107,22 @@ int main() {
         Carta2.n_pt,
         Carta2.area,
         Carta2.densidade,
-        Carta2.pibperc
+        Carta2.pibperc,
+        Carta2.superpoder
     );
+
+    printf(
+        "\n** Resultado **\n População: %d\n PIB: %d\n Pontos turísticos: %d\n Área: %d\n Densidade: %d\n PIB per Capita: %d\n Super poder: %d\n",
+        Carta1.populacao > Carta2.populacao,
+        Carta1.pib > Carta2.pib,
+        Carta1.n_pt > Carta2.n_pt,
+        Carta1.area > Carta2.area,
+        Carta1.densidade > Carta2.densidade,
+        Carta1.pibperc > Carta2.pibperc,
+        Carta1.superpoder > Carta2.superpoder
+    );
+
+
 
     return 0;
 
